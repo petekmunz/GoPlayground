@@ -19,6 +19,10 @@ func main() {
 		os.Exit(1)
 	}
 
+	if resp != nil {
+		defer resp.Body.Close() //Must close to avoid mem-leak & reuse http connection for another request
+	}
+
 	//Initialize custom writer
 	logWriter := logWriter{}
 
